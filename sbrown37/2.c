@@ -65,11 +65,14 @@ int main( int argc, char **argv) {
 				float z1 = atof(currZ);
 				float z2 = atof(prevZ);
 
+				int r1 = atof(currR);
+				int r2 = atof(prevR);
+
 				//euclidean distance
 				float d;
 				d = sqrt(pow((x1-x2),2) + pow((y1-y2),2) + pow((z1-z2),2));
 
-				fprintf(outputFile, "%s,%s,%f\n", prevR, currR, d);
+				fprintf(outputFile, "%d,%d,%f\n", r2, r1, d);
 			}
 
 			//copy current to prev
