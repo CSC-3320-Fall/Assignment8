@@ -4,7 +4,7 @@ Assignment8
 CSC3320 Fall 2013 Assignment 8 - formatted IO 
 =============================================
 
-## due November 12 2013}
+## due November 12 2013
 ## RWH
 #Fun with (fs)printf, (fs)scanf and FILEs
 
