@@ -7,7 +7,7 @@ int main(int argc, char** argv)
     char scan[1000];
     int count = 0;
     
-    f = fopen("/Users/eorndahl/HW8/4HKD.pdb" , "r");
+    f = fopen(argv[1] , "r");
     
     while ( fgets( scan, sizeof(scan), f) !=NULL) {
         fscanf(f,"%10s",scan);
