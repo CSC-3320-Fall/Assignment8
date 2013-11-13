@@ -1,0 +1,51 @@
+/* kept getting error during commit process: 
+ *    fatal: cannot do a partial commit during merge.....tried fixing it but apparently I don't know how....
+ * had originally done it on putty, then tried on a different ssh client and still couldn't get it to work 
+ * however, this is part 1 of my assignment8. 
+ */
+
+/* This program is used to take in the file 4HKD.pdb and match up
+ * using comparisons to the current scanned word to the key word
+ * (ATOM or HETATM), if so then add to the corresponding counter.
+ * Then print the results found.
+ *
+ * I noticed compiling differences but I compiled using
+ * gcc -o newfile counting.c
+ * then running it with    ./newfile  ../4HKD.pdb
+ * and it ran correctly.
+*/
+#include<stdio.h>
+#include<string.h>
+
+int main(int argc, char** argv) {
+
+        FILE *p;                //geting the file
+        char fileline[750];     //creating line buffer
+        int num = 0;
+        int num2 = 0;           //counters
+        p = fopen(argv[1] , "r");       //reading
+/*
+        scanf("%s" , word);
+        printf("%s\n", word);
+*/
+        while( fgets(fileline, sizeof(fileline), p) != NULL)  {
+                fscanf(p, "%s", fileline);              //scan line
+
+                if(strcmp(fileline, "ATOM") == 0) {     //if line equals word
+                num++;
+                }
+                if(strcmp(fileline, "HETATM") == 0) {
+                num2++;
+                }
+        }
+
+        fclose(p);
+        printf("We found the word ATOM in the 4HKD.pdb file %d of times" ,  num);
+        printf("\nWe found the word HETATM in the 4HKD.pdb file %d of times\n",  num2);
+        return(0);
+}
+
+
+/*      while(!feof(p)) {
+        }
+*/
