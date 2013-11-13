@@ -25,16 +25,13 @@ int main(int argc, char *argv[])
 
 	char line[LINE_MAX];
 	char substring[STR_LEN + 1];
-
 	int count = 0;
 	while(fgets(line, sizeof(line) , ip) != (char *)0){
 			strncpy(substring, line, 6);
-			if(strcmp(substring, "ATOM  ") == 0) count++;
-			if(strcmp(substring, "HETATM") == 0) count++;
-			
+			if(strcmp(substring, "ATOM  ") == 0 || (strcmp(substring, "HETATM") == 0)) 
+			count++;
 		}
-
     fclose(ip);
-    printf("%d\n", count);
+    printf("Answer: %d\n", count);
 	return 0;
 }
