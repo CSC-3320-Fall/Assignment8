@@ -57,10 +57,9 @@ int main(int argc, char *argv[])
 						strtof(parse_marker, &parse_marker),
 						strtof(parse_marker, &parse_marker),
 						strtof(parse_marker, &parse_marker)};
-						
+					
+					/*Compute Euclidean distance between each point.*/
 					if (count % 2 == 0 ){
-						//printf("current x: %f  previous x: %f \n", current.x, previous.x );
-						euclidean_distance(previous, current);
 						fprintf(op ,"%d, %d, %f\n", previous.resn, current.resn, euclidean_distance(current, previous) );
 					}
 					previous = current;		
