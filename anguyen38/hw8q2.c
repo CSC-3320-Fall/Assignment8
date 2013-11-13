@@ -21,7 +21,7 @@ int main(int argc, char **argv)
         printf("Invalid file, please enter ./program_name file_name\n");
         return 0;
     }
-    FILE *csv_file = fopen("hw8q2.csv", "w+");
+    FILE *csv_file = fopen("hw8q2.csv", "w+"); //writing output to .csv file
 
     fseek(infile, 0, SEEK_SET); //search file from the beginning.
 
