@@ -46,7 +46,63 @@ int main(int argc, char** argv) {
         return(0);
 }
 
-
 /*      while(!feof(p)) {
         }
 */
+
+
+
+
+
+
+
+
+
+
+/* This is Part 2 attempt 
+ * This program is used to first take in the 4HKD.pdb file
+ * then scan in the current line and match up to corresponding fields (ATOM and HETATM)
+ * because noticed those are only labels with ca(s) in them. There is an array created
+ * to store these positions to later be used in the subtraction (of values in those  indexes)
+ * It would then need to complete the subtraction for distances, and then close out the file.
+ */
+#include<stdio.h>
+
+
+
+int main(int argc, char** argv)  {
+
+        FILE *p;
+        char cafile[750];
+        int resarray[25] = {0};
+        int x,y,z;
+        int residue = 0;
+
+
+
+        p = fopen(argv[1] , "r");
+        while( fgets(cafile, sizeof(cafile), p) != NULL)  {  //get line
+                fscanf(p, "%s", fileline);              //scan current line
+
+                if((strcmp(fileline, "ATOM") == 0) || (strcmp(fileline, "HETATM") == 0)) {     //the ca(s) are located in these labels
+                if(strcmp(fileline, "CA") == 0)  {      //if read ca then continue
+                        resarray[i] += 1;               //adding to position
+                        resarray[i] = residue;          //make current number as a residue number to be used
+                //not sure how to go about getting the distance from here
+                //if you are correctly placed at the residue position
+                //then it would need to subtract the position from the other position
+                //not sure how to incorporate x,y,z fields, and why needed for distance
+                }
+                }
+        }
+
+
+        fclose(p);
+        return(0);
+}
+
+
+
+
+
+
