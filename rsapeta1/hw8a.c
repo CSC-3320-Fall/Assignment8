@@ -47,16 +47,19 @@ int main(int argc, char *argv[])
 
 
 	//Allocate an array to take in the lines from file
-	char line[80], substr[6];	
+	char line[500], string[15];	
 
-	
-	while (fgets (line, 80, input) != NULL)
-	{ 
-		if( strcmp("ATOM ", line) == 0 )
+
+	while(!feof(input)) 
+	{
+		fgets( line, sizeof(line), input);
+		sscanf( line," %8.2f", &string);
+		if( strcmp(string, "ATOM") == 0 )
 			atomCount++;
-		if( strcmp("HETATM ", line) == 0 )
+		if( strcmp(string, "HETATM") == 0 )
 			hetatmCount++;
-		else printf("%s", line);
+		printf("%s", string);		//tester
+		
 	}
 		
 	fclose(input);	
