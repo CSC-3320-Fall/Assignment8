@@ -1,4 +1,5 @@
-/* kept getting error during commit process: 
+/* please grade...
+ * kept getting error during commit process: 
  *    fatal: cannot do a partial commit during merge.....tried fixing it but apparently I don't know how....
  * had originally done it on putty, then tried on a different ssh client and still couldn't get it to work 
  * however, this is part 1 of my assignment8. 
