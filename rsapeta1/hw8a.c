@@ -46,26 +46,28 @@ int main(int argc, char *argv[])
         //Initialize the counting variables
         int atomCount, hetatmCount;
         atomCount = hetatmCount = 0;
-
-	//Strings to compare to HETATM and ATOM, respectively
-	char hComp[6];	
-	char aComp[4];
 	
+	//Strings to compare to HETATM and ATOM, respectively
+	char hComp[6];        
+        char aComp[4];
+
+	char atom[5] = "ATOM ";
+	char hetatm[6] = "HETATM";
+
 	while(fgets( line, sizeof(line), input) != 0)
 	{
-		//copy first 6 char to temp, compare and increment
+		//copy first 6 char to hComp, firs 4 to aComp
 		strncpy(hComp, line, 6);
-		if( (strcmp(hComp, "HETATM")) == 0)
+		strncpy(aComp, line, 5);
+
+		if( (strcmp(hComp, hetatm)) == 0)
 			hetatmCount++;
-		
-		//copy first 4 char to aComp, compare and increment
-		strncpy(aComp, line, 4);
-		if( (strcmp(aComp, "ATOM")) == 0)
+		if( (strcmp(aComp, atom)) == 0)
 			atomCount++;
 
+		//printf("%s\n", line);			//tester
 		//printf("hComp: %s\n",hComp);		//tester
-		//printf("aComp: %s\n",aComp);		//tester
-		//printf("%s", line);			//tester
+		printf("aComp: %s\ntest: %s\ncmp: %d\n\n",atom, aComp, (strcmp(aComp, atom)));		//tester
 		
 	}
 
