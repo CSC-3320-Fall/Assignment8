@@ -21,6 +21,7 @@ typedef struct point
 	double x;
 	double y;
 	double z;
+	double residue;
 } point;
 
 double Distance( point ca1 , point ca2 );
@@ -50,7 +51,9 @@ int main( int argc, char *argv[] )
 	// Allocate an array to take in the lines and tokens from file
 	char line[1000];
 	char *token, *tmp;
-	point ca1 = { 0 , 0 , 0 }, ca2 = { 0 , 0 , 0 };
+
+	// Initialize points to 0s
+	point ca1 = { 0 , 0 , 0 , 0 }, ca2 = { 0 , 0 , 0 , 0 };
 
 	int j = 0;
 
@@ -66,6 +69,7 @@ int main( int argc, char *argv[] )
 			
 		token = strtok( NULL , " " );			// 2nd token
 		if( token == NULL ) { continue; }		// If empty, skip line
+		tmp =  token; 					// residue# = 2nd token
 
 		token = strtok( NULL , " " );			// 3rd token!!!
                 if( token == NULL ) { continue; }		// If empty, skip line
@@ -89,6 +93,7 @@ int main( int argc, char *argv[] )
 	                token = strtok( NULL , " " );                    // 9th token!!!
 			ca2.z = atof ( token );				 // z = 9th token
 
+			ca2.residue = atof ( tmp );		// res# = 2nd token
 
 		/* On initial run, ca1 will be (0,0,0). Therefore, to make a special
 		// case for the intial run of the loop, the program checks for 0. If
@@ -98,19 +103,21 @@ int main( int argc, char *argv[] )
 			{ ca1 = ca2; continue; }	
 			
 			else
-			{ double k = Distance( ca1, ca2 ); fprintf( output, "%g," , k );}
+			{ 
+				double k = Distance( ca1, ca2 ); 
+				fprintf( output, "%g, %g, %g\n" , ca2.residue , ca1.residue , k );
+			}
 		}		
 	}
 
 	fclose(input);	
+	printf("\n\tSee file 'output.csv' for results.\n\n");
 	return 0;
 
 }
 
 double Distance( point ca1, point ca2 )
 {
-	printf("y2 =  %g, y1 = %g\n", ca2.y, ca1.y);
-
 	double tempx = ca2.x - ca1.x;
 	tempx = tempx * tempx; 
 		

@@ -10,18 +10,12 @@ Assignment 8
 
 */
 
-
-
-
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 
-
 int main(int argc, char *argv[])
 {
-
 	//If an extra argument isn't given, provide the user with the proper usage
 	if( argc != 2)
 	{
@@ -51,35 +45,28 @@ int main(int argc, char *argv[])
 	char hComp[6];        
         char aComp[4];
 
+	// The strings the program is searching for
 	char atom[5] = "ATOM ";
 	char hetatm[6] = "HETATM";
 
+	// Every run of while gets a new line from the file
 	while(fgets( line, sizeof(line), input) != 0)
 	{
-		//copy first 6 char to hComp, firs 4 to aComp
+		// copy first 6 char to hComp, firs 4 to aComp
 		strncpy(hComp, line, 6);
 		strncpy(aComp, line, 5);
 
+		// self-explanatory
 		if( (strcmp(hComp, hetatm)) == 0)
 			hetatmCount++;
 		if( (strcmp(aComp, atom)) == 0)
 			atomCount++;
-
-		//printf("%s\n", line);			//tester
-		//printf("hComp: %s\n",hComp);		//tester
-		printf("aComp: %s\ntest: %s\ncmp: %d\n\n",atom, aComp, (strcmp(aComp, atom)));		//tester
-		
 	}
 
-		
 	fclose(input);	
 
 	printf("\n\tThe number of lines that start with \"ATOM\" is %d.", atomCount);
 	printf("\n\n\tThe number of lines that start with \"HETATM\" is %d.\n\n", hetatmCount);
 
 	return 0;
-
-
-
-
 }
