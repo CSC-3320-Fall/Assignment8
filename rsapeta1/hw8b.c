@@ -16,7 +16,8 @@ Assignment 8
 #include<stdlib.h>
 
 
-typedef struct {
+typedef struct point
+{
 	double x;
 	double y;
 	double z;
@@ -36,7 +37,8 @@ int main( int argc, char *argv[] )
 	}
 
 	//Opens a file from the command line argument provided by user	
-	FILE *input = fopen( argv[1], "r" );
+	FILE *input = fopen( argv[1] , "r" );
+	FILE *output = fopen( "output.csv" , "w" );
 
 	//If the file isn't found, print an error message and exit program
 	if ( input == NULL )
@@ -45,26 +47,68 @@ int main( int argc, char *argv[] )
                 exit ( -1 );
         }
 
-	//Allocate an array to take in the lines from file
+	// Allocate an array to take in the lines and tokens from file
 	char line[1000];
+	char *token, *tmp;
+	point ca1 = { 0 , 0 , 0 }, ca2;
 
-	point ca1, ca2 = { 0.0 , 0.0 , 0.0 };
+	int j = 0;
 
-	int j = 1;
-
-	while(fgets( line, sizeof(line), input ) != 0)
+	while( fgets( line, sizeof(line), input ) != 0 )
 	{
+		/* strtok takes a initial input, sets line in memory, sets token
+		// equal to the first token. Call strtok on a NULL pointer, 
+		// and it will pull subsequent tokens. */
 		
-		//if 3rd field is "CA", find and store ca2.x, ca2.y, ca2.z (field7-9) 
-		//if ( ca2.x == 0.0 ) { ca2 = ca1; continue; }
+		token = strtok( line, " " );			// 1st token in strtok...
+		
+		
+		token = strtok( NULL , " " );			// 2nd token
+		if( token == NULL ) { continue; }		// If empty, skip line
+
+		token = strtok( NULL , " " );			// 3rd token!!!
+                if( token == NULL ) { continue; }		// If empty, skip line
+    
+
+		
+		// If 3rd field is "CA", find and store ca2.x, ca2.y, ca2.z (field7-9) 
+		
+		if ( (strcmp( token , "CA" )) == 0 )		// atom = 3rd column
+		{
+	
+	                token = strtok( NULL , " " );                    // 4th token...
+	      	        token = strtok( NULL , " " );                    // 5th token...
+                	token = strtok( NULL , " " );                    // 6th token...
+
+	                token = strtok( NULL , " " );                    // 7th token!!!
+			ca2.x = atof ( token );				 // x = 7th token
+
+			token = strtok( NULL , " " );                    // 8th token!!!
+			ca2.y = atof ( token );				 // y = 8th token
+
+	                token = strtok( NULL , " " );                    // 9th token!!!
+			ca2.z = atof ( token );				 // z = 9th token
+
+
+		/* On initial run, ca1 will be (0,0,0). Therefore, to make a special
+		// case for the intial run of the loop, the program checks for 0. If
+		// so, set ca1 [distance is calculated with ca2-ca1] equal to ca2
+		// and skip the distance calculation and print statement. */
 			
-		double k = Distance( ca1, ca2 );
-		printf( "The distance between CA %d and CA %d is %d" , j , (j+1) , k );
-		j++;		
+			if ( ca1.x == 0 ) 
+			{ ca1 = ca2; continue; }	
+			 
+		// If not initial run, calculate distance and print statement
+			
+		double k = Distance( ca1 , ca2 );
+		fprintf( output, "%g," , k );
+				
+		}
 	}
-		
-	fclose( input );	
+
+	fclose(input);	
 	return 0;
+
 }
 
 double Distance( point ca1, point ca2 )
