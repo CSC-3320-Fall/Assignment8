@@ -1,9 +1,5 @@
 /*
 
-I will be fixing this code until I have it working and will complete
-question 2 and submit them both asap. I am submitting this to show that I have 
-been working at it. Thank you.
-
 Richard Sapeta 001-88-0246
 Harrison TR 1:00
 Assignment 8
