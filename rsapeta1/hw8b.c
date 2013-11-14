@@ -50,7 +50,7 @@ int main( int argc, char *argv[] )
 	// Allocate an array to take in the lines and tokens from file
 	char line[1000];
 	char *token, *tmp;
-	point ca1 = { 0 , 0 , 0 }, ca2;
+	point ca1 = { 0 , 0 , 0 }, ca2 = { 0 , 0 , 0 };
 
 	int j = 0;
 
@@ -60,16 +60,16 @@ int main( int argc, char *argv[] )
 		// equal to the first token. Call strtok on a NULL pointer, 
 		// and it will pull subsequent tokens. */
 		
+		ca1 = ca2;
+
 		token = strtok( line, " " );			// 1st token in strtok...
-		
-		
+			
 		token = strtok( NULL , " " );			// 2nd token
 		if( token == NULL ) { continue; }		// If empty, skip line
 
 		token = strtok( NULL , " " );			// 3rd token!!!
                 if( token == NULL ) { continue; }		// If empty, skip line
     
-
 		
 		// If 3rd field is "CA", find and store ca2.x, ca2.y, ca2.z (field7-9) 
 		
@@ -94,16 +94,12 @@ int main( int argc, char *argv[] )
 		// case for the intial run of the loop, the program checks for 0. If
 		// so, set ca1 [distance is calculated with ca2-ca1] equal to ca2
 		// and skip the distance calculation and print statement. */
-			
-			if ( ca1.x == 0 ) 
+			if( ca1.x == 0 ) 
 			{ ca1 = ca2; continue; }	
-			 
-		// If not initial run, calculate distance and print statement
 			
-		double k = Distance( ca1 , ca2 );
-		fprintf( output, "%g," , k );
-				
-		}
+			else
+			{ double k = Distance( ca1, ca2 ); fprintf( output, "%g," , k );}
+		}		
 	}
 
 	fclose(input);	
@@ -113,9 +109,11 @@ int main( int argc, char *argv[] )
 
 double Distance( point ca1, point ca2 )
 {
+	printf("y2 =  %g, y1 = %g\n", ca2.y, ca1.y);
+
 	double tempx = ca2.x - ca1.x;
 	tempx = tempx * tempx; 
-	
+		
 	double tempy = ca2.y - ca1.y;
 	tempy = tempy * tempy;
 
