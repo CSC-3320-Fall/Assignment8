@@ -7,6 +7,9 @@
 ** CSc 3320
 ** Assignment 8
 ** Question 2
+** This code does not work yet and I didn't even mean to upload it. I loathe having
+** to use github to submit homework. I don't know how to remove the stupid file.
+** So I'm going to try and fix it and then resubmit it later. 
 */
 
 int main(int argc, char **args)
