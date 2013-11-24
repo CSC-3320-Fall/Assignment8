@@ -47,7 +47,7 @@ int main() {
             if ((count % 2) == 0) { 
                 x = col6;
 		y = col7;
- 		z = col8;
+		z = col8;
 		residue = col5;
             } else {
                 count++;
