@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+
+FILE *fp;
+float x[87], y[87], z[87], distance;
+char str[1164];
+int counterAt=0, counterHet=0, countca=0;
+
+
+fp = fopen("4HKD.pdb" , "r");
+   if(fp == NULL)
+         {
+              perror("Error opening file");
+                 return(-1);
+        }
+        int i=0;
+while (fgets(str, 1164, fp)!=NULL)
+{
+        if(str[i] == 'A' && str[i+1] == 'T' && str[i+2]== 'O' && str[i+3]=='M')
+        {
+                counterAt++;
+
+}
+        if(str[i] == 'H' && str[i+1] == 'E' && str[i+2]== 'T' && str[i+3]=='A')
+        counterHet++;
+        if (str[13]=='C' && str[14]=='A')
+        {
+
+                sscanf(&str[32], "%f %f %f\n",&x[i],&y[i],&z[i]);
+                //printf("%f %f %f\n", x, y, z);
+                //i++;
+                //distance=sqrt((pow(x[i+1]-x[i], 2) + (pow(y[i+1]-y[i], 2) +(pow(z[i+1]-z[i], 2), 2);
+                //printf("the distance between CA%d and CA%d is %f", i, i+1, distance);
+}
+
+}
+
+
+fclose(fp);
+printf("number of atoms is :%d\n number of Hetatms is: %d\n ", counterAt, counterHet);
+return(0);
+                                                                                                                            

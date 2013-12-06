@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>// I forgot to include this in assignment 8, please do still grade!
+
+int main()
+{
+    char ch;
+ float IC=0;
+    FILE *fp;
+int n=0, count[26]={0};
+
+    fp = fopen("text.two.encrypt", "r+");
+     while( ( ch = fgetc(fp) ) != EOF ) {
+
+        if (ch >= 'a' && ch <='z')
+{
+        count[ch - 'a']++;
+n++;
+
+}
+}
+printf(" the answer is %d\n: ", n);
+int i=0;
+while ( i< 26)
+{
+IC=IC+(count[i])*(count[i]-1);
+i++;
+
+}
+IC=IC/(n*(n-1));
+printf(" the answer is %f\n: ", IC);
+
+float k = (0.0265 *n)/((0.065 - IC) + n*(IC -0.0385));
+
+
+printf("the length is %d\n",(int) k);
+return 0;
+fclose(fp);
+}
+
