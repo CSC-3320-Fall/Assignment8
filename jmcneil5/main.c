@@ -68,5 +68,5 @@ while (can[i+1] != 0){ //if can[i+1] == 0, there is no entry after this index an
 fclose(output);
 
 //Results
-printf( "%i ATOM records.\n%i HETATM records.\n%i CA records.\nCA atom distances recorded in cadistances.csv.\n", atom, heta, --index );
+printf( "%i ATOM records.\n%i HETATM records.\n%i CA records.\nCA atom distances recorded in cadistances.csv.\n", atom, heta, index );
 }
